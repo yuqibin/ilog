@@ -1,0 +1,36 @@
+{
+  "name": "myy-ilog",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "repository": "http://gitlab.myyun.com/yuqibin/myy-ilog.git",
+  "author": "yuqibin <930174189@qq.com>",
+  "license": "MIT",
+  "description": "埋点sdk",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-json": "^5.0.2",
+    "@types/crypto-js": "^4.1.1",
+    "prettier": "^2.8.0",
+    "rollup": "^3.5.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "tslib": "^2.6.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "cnpm": "^9.2.0",
+    "crypto-js": "^4.1.1"
+  }
+}
