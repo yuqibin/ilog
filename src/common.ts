@@ -1,6 +1,7 @@
 import { isAndroid, isIOS, isWx, isXcx } from './env'
 import CryptoJS from 'crypto-js';
-import { config, resendCacheFaileLog } from './config';
+import { config, } from './config';
+import { resendCacheFaileLog } from './reSend';
 
 let lastEvent: any
 let intervaler: any = null
@@ -62,6 +63,7 @@ function onloadHandle() {
 
 // 间隔一段时间尝试发送一次失败的log
 function resendIntervaler() {
+  resendCacheFaileLog()
   window.clearInterval(intervaler)
   if (!config.resendInterval || typeof config.resendInterval !== 'number') {
     return

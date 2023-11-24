@@ -1,6 +1,7 @@
 import { ILogType } from './type'
-import { config, pushCacheFaileLog } from './config'
+import { config, } from './config'
 import { freeCallback, getEnv, pagehideCallbackCollecter } from './common'
+import { pushCacheFaileLog } from './reSend';
 import { hasSymbol } from './env'
 
 const env = getEnv()

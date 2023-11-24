@@ -16,16 +16,12 @@
 
 ```typescript
 // main.ts
-declare global {
-  interface Window {
-    _ILOGMYY_: any
-  }
-}
+import ilog from '@yqb/ilog'
 
-const { _ILOGMYY_ } = window
-
-_ILOGMYY_.initIlogConfig({
+// 初始化配置
+ilog.initIlogConfig({
   a: number | string,   // 应用id 【🔥必须】一个项目只能设置一个appId
+  ilogUrl: string,  // 必须 如果不想使用默认接口 可自定义埋点接口地址 🔥必须是图片资源文件地址
   longResourceTime: number, // 资源加载时间阈值 ms  超过时间就会上报 🔥请谨慎设置
   longApiTime: number,      // 服务api接口时间阈值 ms 超时会上报 🔥请谨慎设置
   longTaskTime: number,    // 长任务时间阈值 ms  当遇到卡顿情况 卡顿时间超过阈值 会上报卡顿 🔥请谨慎设置
@@ -33,7 +29,6 @@ _ILOGMYY_.initIlogConfig({
   clickAsm: 'csm',   // 点击埋点字段名 默认csm 比如 <body csm="a.b.c"></body> 当点击body就会将a.b.c进行上报
   mode: 'dev',           // 运行环境 'dev' | 'test' | 'pre' | 'prd'
   threshold: 0.5,        // [0-1]默认0.5 曝光范围定义 0表示露出1px就算曝光  1表示模块完全暴露才算曝光
-  ilogUrl: URL_MAP.dev,  // 如果不想使用默认接口 可自定义埋点接口地址 🔥必须是图片资源文件地址
   ba: {                // 基础信息 每次上报都会携带的参数 比如token userId  personId 这类等
     personId: 10086,  
     clinicId: 279
@@ -42,14 +37,14 @@ _ILOGMYY_.initIlogConfig({
 })
 
 // 选择开启
-_ILOGMYY_.mutationRun()          // 开启曝光监控
-_ILOGMYY_.uxObserveRun(['click', 'input'])  // 开启用户行为监控 pageusetime click input
-_ILOGMYY_.errorObserveRun()      // 开启错误监控
-_ILOGMYY_.perfObserveRun()       // 开启性能监控
-_ILOGMYY_.removeObserveOnleave() // 页面销毁时移除全部监控
+ilog.mutationRun()          // 开启曝光监控
+ilog.uxObserveRun(['click', 'input'])  // 开启用户行为监控 pageusetime click input
+ilog.errorObserveRun()      // 开启错误监控
+ilog.perfObserveRun()       // 开启性能监控
+ilog.removeObserveOnleave() // 页面销毁时移除全部监控
 
 // 全部开启（自动移除）
-_ILOGMYY_.autoAllObserve() 
+ilog.autoAllObserve() 
 ```
 
 ### 3. use 业务端使用  pageCode moduleCode为可选  opCode为必填  'a..c' '..c' '.b.c'
@@ -61,7 +56,7 @@ _ILOGMYY_.autoAllObserve()
 ```JavaScript
 // 代码主动埋点
 if(x > 1) {
-  _ILOGMYY_({
+  ilog({
     a: 123456, // 这里支持跳过项目配置传appId 处理B应用其实是A应用抽离的一个大模块 appId不对应 的情况
     asm: 'pageCode.moduleCode.opCode', // 业务埋点基本必传opCode '..opCode'
     ext: {
@@ -78,14 +73,14 @@ if(x > 1) {
 - cryptoMd5  md5数据加密 一般是initIlogConfig配置项目的时候 base里 userId这类数据加密 需要对接后端做解密
 ```typescript
 // 数据加密  md5
-_ILOGMYY_.cryptoMd5('123') // '202cb962ac59075b964b07152d234b70'
-_ILOGMYY_.cryptoAes('123')
+ilog.cryptoMd5('123') // '202cb962ac59075b964b07152d234b70'
+ilog.cryptoAes('123')
 ```
 
 - pagehideCallbackCollecter  回调收集器 会在addEventListener pagehide 事件统一执行回调
 ```typescript
 // pagehideCallbackCollecter 收集回调 在pagehide钩子执行
-_ILOGMYY_.pagehideCallbackCollecter(() => {
+ilog.pagehideCallbackCollecter(() => {
   ...
 })
 ```
@@ -94,7 +89,7 @@ _ILOGMYY_.pagehideCallbackCollecter(() => {
 // vue错误监控
 const app = createApp(App)
 app.config.errorHandler = err => {
-  _ILOGMYY_.vueErrorHandle(err)
+  ilog.vueErrorHandle(err)
 }
 ```
 - routerChangeHandle  路由变化埋点
@@ -102,7 +97,7 @@ app.config.errorHandler = err => {
 // 路由监控  由于Vue router 实现方式  addEventListener    hashchange   popstate  无法监测
 const app = createApp(App)
 router.afterEach(() => {
-  _ILOGMYY_.routerChangeHandle()
+  ilog.routerChangeHandle()
 })
 ```
 - sendBeaconHandler 提供一个在pagehide期间不会被中断的上报方式 且上报为post请求 超长get也可以考虑用这个
@@ -132,7 +127,3 @@ export interface ILogType {
   [key in string]: any // 其他可能的字段
 }
 ```
-
-
-## 埋点流程图
-![埋点流程图](./images/flowChart.png)

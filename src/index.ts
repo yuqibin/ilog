@@ -1,4 +1,5 @@
-import { initIlogConfig, resendCacheFaileLogByBeacon } from './config'
+import { initIlogConfig, } from './config'
+import { resendCacheFaileLogByBeacon } from './reSend';
 import { ilog, sendBeaconHandler } from './ilog'
 import { routerChangeHandle } from './uxObserver'
 import { mutationRun, removeMutation } from './mutationObserver'
@@ -66,12 +67,9 @@ const funcMap: any = {
   sendBeaconHandler, // sendBeacon解决页面离开时发送上报请求被中断  实测这个不会中断 
 }
 
-function Ilogmyy() {
-  Object.keys(funcMap).forEach((key: string) => {
-    (ilog as any)[key] = funcMap[key]
-  })
-  return ilog
-}
 
-window._ILOGMYY_ = new (Ilogmyy as any)()
+Object.keys(funcMap).forEach((key: string) => {
+  (ilog as any)[key] = funcMap[key]
+})
 
+export default ilog
