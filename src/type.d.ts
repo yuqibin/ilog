@@ -19,11 +19,11 @@ export interface ExtendsType {
 export interface ILogType {
   a?: number | string // 应用id  比如 his-1001   总控后台-1002  AI诊疗-1003
   ts?: number // 上报时间戳
+  asm?: string // 点位字符串  比如'a.b.c.d'  a是页面Code  b是模块code c是按钮code  d是操作code
   e?: 'pc' | 'h5' | 'xcx' | string // 环境  pc h5 小程序 等
   ua?: string // userAgent
   ki?: 'app' | 'per' | 'err' // 埋点类型  app-业务  per-性能监控  err-错误监控
   ba?: object // 项目配置信息 比如诊所id userid  等等
-  asm?: string // 点位字符串  比如'a.b.c.d'  a是页面Code  b是模块code c是按钮code  d是操作code
   hr?: string // 浏览器地址
   ext?: ExtendsType | any // 扩展数据 传啥存啥  如果是业务埋点内容就是单个埋点需要传的参数 性能埋点 就是性能数据  错误埋点是错误信息
   et?: 'view' | 'click' | 'input' | 'keyboard' | 'timing' | string

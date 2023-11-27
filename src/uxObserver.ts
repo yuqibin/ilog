@@ -74,15 +74,14 @@ function removeListener() {
   lastClickEvent = undefined
 }
 
-function uxObserveRun(eventTypes: string[]) {
-
-  if (eventTypes.includes('click')) {
+function uxObserveRun(eventTypes?: string[]) {
+  if (!eventTypes || eventTypes.includes('click')) {
     window.addEventListener('click', clickHandler)
   }
-  if (eventTypes.includes('input')) {
+  if (!eventTypes || eventTypes.includes('input')) {
     window.addEventListener('input', inputHandler)
   }
-  if (eventTypes.includes('pageusetime')) {
+  if (!eventTypes || eventTypes.includes('pageusetime')) {
     pageStopTime()
   }
 }

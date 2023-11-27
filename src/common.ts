@@ -1,5 +1,4 @@
 import { isAndroid, isIOS, isWx, isXcx } from './env'
-import CryptoJS from 'crypto-js';
 import { config, } from './config';
 import { resendCacheFaileLog } from './reSend';
 
@@ -119,16 +118,6 @@ const freeCallbackFn =
 
 const freeCallback = (cb: () => void) => freeCallbackFn(cb)
 
-// md5 加密
-const cryptoMd5 = (data: any) => {
-  return CryptoJS.MD5(data).toString()
-}
-
-// aes 加密
-const cryptoAes = (data: any) => {
-  return CryptoJS.AES.decrypt(data, '').toString()
-}
-
 export {
   getLastEvent,
   getTargetPathByBubble,
@@ -139,8 +128,6 @@ export {
   formatTime,
   pagehideCallbackCollecter,
   freeCallback,
-  cryptoMd5,
-  cryptoAes,
   resendIntervaler
 }
 

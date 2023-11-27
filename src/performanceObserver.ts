@@ -160,24 +160,34 @@ function memoryHandler({ sendBeacon }: { sendBeacon?: boolean }) {
 }
 
 // PerformanceObserver 监控实例
-function usePerfObserver() {
+function usePerfObserver(types?: string[]) {
   perfObserver = new PerformanceObserver((list: PerformanceObserverEntryList) => {
-    longApi(list)
-    longResource(list)
-    longTask(list)
+    if (!types || types.includes('longApi')) {
+      longApi(list)
+    }
+    if (!types || types.includes('longResource')) {
+      longResource(list)
+    }
+    if (!types || types.includes('longTask')) {
+      longTask(list)
+    }
   })
   perfObserver.observe({ entryTypes: ['resource', 'longtask'] })
 }
 
-// 监控页面性能 首屏性能 资源加载 内存使用
-function perfObserveRun() {
-  isCanUsePerformanceObserver && usePerfObserver()
+// 监控页面性能 首屏性能 资源加载 内存使用  memory  crux longApi longTask longResource
+function perfObserveRun(types?: string[]) {
+  isCanUsePerformanceObserver && usePerfObserver(types)
 
-  onloadCollecter(() => freeCallback(cruxTarget))
-  onloadCollecter(() => memoryHandler({}))
-  pagehideCallbackCollecter(() => memoryHandler({
-    sendBeacon: true
-  }))
+  if (!types || types.includes('memory')) {
+    onloadCollecter(() => memoryHandler({}))
+    pagehideCallbackCollecter(() => memoryHandler({
+      sendBeacon: true
+    }))
+  }
+  if (!types || types.includes('crux')) {
+    onloadCollecter(() => freeCallback(cruxTarget))
+  }
 }
 
 function removeObersve() {

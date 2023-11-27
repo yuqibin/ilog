@@ -1,6 +1,6 @@
 import { ILogType } from './type'
 import { config, } from './config'
-import { freeCallback, getEnv, pagehideCallbackCollecter } from './common'
+import { freeCallback, getEnv } from './common'
 import { pushCacheFaileLog } from './reSend';
 import { hasSymbol } from './env'
 
@@ -11,6 +11,8 @@ const env = getEnv()
  * @returns string
  */
 function checkPath(params: ILogType & { [key in string]: any }) {
+  params.bt = params.bt || Date.now()
+  params.ba = config.ba
   // let paramsPath = `?a=${params.a}&bt=${Date.now()}&ba=${JSON.stringify(config.ba)}`
 
   // for (let key of Object.keys(params)) {
@@ -21,8 +23,7 @@ function checkPath(params: ILogType & { [key in string]: any }) {
   //   }
   // }
   // return paramsPath
-  params.bt = params.bt || Date.now()
-  params.ba = config.ba
+
   return window.encodeURI(`?data=${JSON.stringify(params)}`)
 }
 const symbolkey: unique symbol = Symbol()

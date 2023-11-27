@@ -1,12 +1,14 @@
 {
   "name": "@doog_boy/ilog",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/ilog.js",
+  "browser": "dist/iife/ilog.js",
+  "module": "dist/es/ilog.js",
   "repository": "https://github.com/yuqibin/ilog.git",
-  "author": "yuqibin <930174189@qq.com>",
+  "author": "yuqibin",
   "license": "MIT",
-  "description": "埋点sdk",
+  "description": "log,console,view,",
   "scripts": {
     "build": "rollup -c"
   },

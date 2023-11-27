@@ -17,12 +17,25 @@ const paths = {
 const fileName = `ilog.js`
 
 export default {
-  input: `${paths.input.root}`,
-  output: {
-    file: `${paths.output.root}${fileName}`,
-    format: 'iife',
-    name: 'ilog'
-  },
+  input: `src/index.ts`,
+  output: [
+    {
+      file: 'dist/es/ilog.js',
+      format: 'esm', // 将软件包保存为 ES 模块文件
+      name: '',
+      exports: 'default'
+    },
+    {
+      file: 'dist/ilog.js',
+      format: 'cjs', // CommonJS，适用于 Node 和 Browserify/Webpack
+      name: ''
+    },
+    {
+      file: `dist/iife/ilog.js`,
+      format: 'iife',
+      name: 'doogilog'
+    }
+  ],
   plugins: [
     json(),
     resolve({
@@ -39,6 +52,9 @@ export default {
     uglify()
   ]
 }
+
+
+
 
 
 
