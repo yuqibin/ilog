@@ -65,7 +65,6 @@ function autoAllObserve() {
 // })
 
 export {
-  ilog as default,
   ilog,
   initIlogConfig,
   autoAllObserve,
@@ -77,3 +76,5 @@ export {
   pagehideCallbackCollecter,
   sendBeaconHandler
 }
+
+// export default ilog

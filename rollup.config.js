@@ -22,8 +22,8 @@ export default {
     {
       file: 'dist/es/ilog.js',
       format: 'esm', // 将软件包保存为 ES 模块文件
-      name: '',
-      exports: 'default'
+      name: ''
+      // exports: 'default'
     },
     {
       file: 'dist/ilog.js',
@@ -52,6 +52,7 @@ export default {
     uglify()
   ]
 }
+
 
 
 
