@@ -15,15 +15,6 @@ import { uxObserveRun, removeListener as removeUxListener } from './uxObserver'
 import { vueErrorHandle } from './errorObserver'
 import { cryptoMd5, cryptoAes, pagehideHandle, onloadHandle, pagehideCallbackCollecter } from './common';
 
-// ABN test
-declare global {
-  interface Window {
-    ilogmyy: any
-    _ILOGMYY_: any
-  }
-}
-
-
 // 页面加载完成 注册的回调清空
 onloadHandle()
 

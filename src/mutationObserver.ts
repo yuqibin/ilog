@@ -33,7 +33,6 @@ function collectTargets() {
 
 declare global {
   interface Window {
-    MyyLog0001: any
     WebKitMutationObserver?: MutationObserver
     MozMutationObserver?: MutationObserver
   }

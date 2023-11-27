@@ -1,14 +1,18 @@
 {
-  "name": "@yqb/ilog",
+  "name": "@doog_boy/ilog",
   "version": "1.0.0",
   "type": "module",
   "main": "src/index.ts",
-  "repository": "http://gitlab.myyun.com/yuqibin/myy-ilog.git",
+  "repository": "https://github.com/yuqibin/ilog.git",
   "author": "yuqibin <930174189@qq.com>",
   "license": "MIT",
   "description": "埋点sdk",
   "scripts": {
     "build": "rollup -c"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "keywords": [],
   "devDependencies": {

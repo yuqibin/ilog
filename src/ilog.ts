@@ -28,7 +28,6 @@ function checkPath(params: ILogType & { [key in string]: any }) {
 const symbolkey: unique symbol = Symbol()
 declare global {
   interface Window {
-    MyyLog0000001: any
     [symbolkey]: any
     ['ilog9088jhfahfjaahqwe']: any
   }
