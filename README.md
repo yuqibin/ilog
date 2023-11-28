@@ -1,16 +1,15 @@
 ## Quick Start
 
-### 1. install  安装 & 打包
+### 1. install  安装 | 引入
 - ```npm install myy-ilog```
 - ```yarn add myy-ilog```
-- 打包：执行```npm run build 或者 yarn run build``` 获取dist/iife/ilog.js 使用
+-  script src=dist/iife/ilog.js 
 ### 2. set configuration  项目初始化配置
 
 
-需要后端提供一个1x1像素的gif地址
-比如：www.xxx.gif 
-1让后端把www.xxx.gif做成get+post接口 
-2让后端提供真实的www.xxx.gif访问地址 然后抓取日志
+- 需要后端提供一个gif地址,比如：www.xxx.gif 
+- 方式1：让后端把www.xxx.gif做成get+post接口 
+- 方式2：让后端提供真实的1x1像素的www.xxx.gif访问地址 然后抓取日志获取参数
 
 ```typescript
 // main.ts
@@ -52,7 +51,6 @@ mutationRun()                                     // 开启曝光监控
 uxObserveRun()                                    // 不传 全部开启
 uxObserveRun(['click', 'input', 'pageusetime'])   // 选择开启 用户行为监控 pageusetime click input
 errorObserveRun()                                 // 开启错误监控
-perfObserveRun()                                  // 不传 全部开启 性能监控
 /**
  * @param {String} crux    首屏性能指标
  * @param {String} memory  内存使用情况  打开+关闭 两次上报
@@ -61,6 +59,7 @@ perfObserveRun()                                  // 不传 全部开启 性能�
  * @param {String} longResource 超长资源请求
  */
 perfObserveRun(['memory', 'crux', 'longApi', 'longTask', 'longResource']) // 选择开启 性能监控
+perfObserveRun()                                  // 不传 全部开启 性能监控
 removeObserveOnleave() // 页面销毁时移除全部监控
 
 // 全部开启（自动移除）
@@ -107,6 +106,7 @@ export interface ILogType {
 ```html
 <!-- 当body曝光或者被点击时 进行上报 (vsm上报前提是mutationRun开启 csm上报前提是 uxObserveRun(['click'])) -->
 <body vsm="a.b.c" :csm="`a.b.${c}`"></body>
+<!-- 曝光上报后会移除vsm属性 -->
 ```
 ```JavaScript
 // 代码主动埋点
@@ -116,7 +116,7 @@ if(Math.random() > 0.5) {
     asm: 'pageCode.moduleCode.opCode', // 业务埋点基本必传opCode '..opCode'
     ext: {
       a: 'id',
-      b: '使用期间点击次数'
+      b: 'idd'
       ...
     }
   })

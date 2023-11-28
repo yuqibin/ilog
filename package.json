@@ -8,7 +8,7 @@
   "repository": "https://github.com/yuqibin/ilog.git",
   "author": "yuqibin",
   "license": "MIT",
-  "description": "log,console,view,",
+  "description": "data buried point transmitter",
   "scripts": {
     "build": "rollup -c"
   },
@@ -16,13 +16,19 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "keywords": [],
+  "keywords": [
+    "log",
+    "console",
+    "view",
+    "click",
+    "gif",
+    "transmitter"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.5",
     "@babel/preset-env": "^7.20.2",
     "@rollup/plugin-json": "^5.0.2",
-    "@types/crypto-js": "^4.1.1",
     "prettier": "^2.8.0",
     "rollup": "^3.5.1",
     "rollup-plugin-babel": "^4.4.0",
@@ -36,7 +42,5 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "cnpm": "^9.2.0",
-    "crypto-js": "^4.1.1"
   }
 }
