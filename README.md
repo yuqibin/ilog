@@ -60,7 +60,7 @@ perfObserveRun()                                  // 不传 全部开启 性能�
  * @param {String} longTask 长任务（卡顿）
  * @param {String} longResource 超长资源请求
  */
-perfObserveRun(['memory', 'crux', 'api', 'task', 'resource']) // 选择开启 性能监控
+perfObserveRun(['memory', 'crux', 'longApi', 'longTask', 'longResource']) // 选择开启 性能监控
 removeObserveOnleave() // 页面销毁时移除全部监控
 
 // 全部开启（自动移除）
